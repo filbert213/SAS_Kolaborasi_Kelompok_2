@@ -1,0 +1,211 @@
+:root{
+  --nav-yellow: #FFF29D; /* light yellow navbar */
+  --tape-yellow: #FFD400;
+  --tape-black: #111;
+  --accent: #F5D547;
+  --primary-dark: #2b0d28;
+  --text-light: #f5f5f5;
+  --card-dark: #000; /* sections black */
+}
+
+/* Reset */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  color:#111;
+  background: linear-gradient(180deg,#f6f4fb 0%, #f0f2f8 100%);
+  transition: background .25s, color .25s;
+}
+
+/* DARK MODE */
+body.dark{
+  background: linear-gradient(180deg,#05050a 0%, #0b0b10 100%);
+  color:var(--text-light);
+}
+
+/* NAVBAR (light yellow background, square buttons) */
+.navbar{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 18px;
+  background: var(--nav-yellow);
+  border-bottom: 2px solid rgba(0,0,0,0.06);
+  transition: all .22s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+/* scrolled navbar */
+.navbar.scrolled{
+  padding:8px 18px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+/* Brand */
+.brand{
+  font-family: "Luckiest Guy", cursive;
+  font-size:26px;
+  color:#111;
+  letter-spacing:1px;
+}
+
+/* links container */
+.links{
+  display:flex;
+  gap:8px;
+  position:relative;
+  align-items:center;
+  padding:6px;
+}
+
+/* nav link: solid rectangle, square corners */
+.nav-link{
+  display:inline-block;
+  padding:8px 14px;
+  text-decoration:none;
+  color:#111;
+  font-weight:700;
+  border-radius:0; /* square edges */
+  position:relative;
+  z-index:2;
+  transition: color .15s, transform .15s;
+}
+
+/* hover effect */
+.nav-link:hover{ transform: translateY(-2px); color:#000; }
+
+/* sliding highlight behind nav links (solid) */
+#navHighlight{
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:0;
+  background:#F1C40F; /* stronger yellow */
+  z-index:1;
+  transition: transform .26s cubic-bezier(.2,.9,.2,1), width .26s cubic-bezier(.2,.9,.2,1);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+/* Dark mode adjust for nav */
+body.dark .navbar{ background: #2a2130; }
+body.dark #navHighlight{ background:#b38a2b; }
+body.dark .nav-link{ color:#eee; }
+
+/* HERO (only on home) */
+.hero{
+  position:relative;
+  overflow:hidden;
+  background: linear-gradient(180deg,#3e0b37 0%, #2b0b2a 60%);
+  color:var(--text-light);
+}
+
+/* diagonal black & yellow hazard tape (top and bottom) */
+.tape-top, .tape-bottom{
+  height:60px;
+  background:
+    repeating-linear-gradient(
+      -45deg,
+      var(--tape-black) 0 30px,
+      var(--tape-yellow) 30px 60px
+    );
+  box-shadow: inset 0 -6px 12px rgba(0,0,0,0.35);
+}
+
+/* hero inner layout */
+.hero-inner{
+  display:flex;
+  gap:20px;
+  align-items:flex-start;
+  padding:34px 40px;
+}
+
+/* left: big rotated title */
+.hero-left{ flex:1; min-height:220px; position:relative; }
+
+.hero-title{
+  font-family: "Luckiest Guy", cursive;
+  font-size:96px;
+  line-height:0.78;
+  margin:12px 0 0 0;
+  transform: rotate(-6deg);
+  color:#fff;
+  text-shadow: 0 6px 30px rgba(0,0,0,0.5);
+}
+
+/* second line accent */
+.hero-title .accent{
+  display:block;
+  color:#FFD9B1;
+  font-size:116px;
+  transform: translateX(-8px) rotate(-6deg);
+  letter-spacing:2px;
+}
+
+/* right topic box */
+.hero-right{ width:420px; padding-top:18px; }
+.topic-title{
+  font-family: "Luckiest Guy", cursive;
+  font-size:30px;
+  margin:0 0 8px 0;
+  color:#fff;
+}
+.topic-box{
+  background: rgba(0,0,0,0.35);
+  padding:16px;
+  border-radius:12px;
+  color:#fff;
+  border: 1px solid rgba(255,255,255,0.04);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.45);
+}
+
+/* MAIN / sections (now black) */
+main{ padding: 22px; }
+.section{
+  background:var(--card-dark); /* BLACK */
+  padding:18px;
+  border-radius:10px;
+  margin-bottom:18px;
+  color:var(--text-light);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.36);
+}
+
+/* dark card variant for home small cards */
+.card.dark{ background:#0b0b0b; color:var(--text-light); }
+
+/* grid */
+.grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  gap:16px;
+}
+
+/* sub-hero for other pages (keeps dark look) */
+.sub-hero{
+  padding:28px;
+  background: linear-gradient(90deg, #4b2a4b, #2b1a2b);
+  color:#fff;
+  margin-bottom:10px;
+}
+
+/* video */
+.video-wrap{ display:flex; justify-content:center; margin-bottom:14px; }
+.video-wrap iframe{ width:100%; max-width:920px; height:520px; border:0; border-radius:8px; }
+
+/* footer */
+.footer{ padding:18px; text-align:center; color: #bbb; }
+
+/* responsive */
+@media (max-width:900px){
+  .hero-inner{ flex-direction:column; padding:22px; }
+  .hero-title{ font-size:60px; transform: rotate(-4deg); }
+  .hero-title .accent{ font-size:76px }
+  .hero-right{ width:100% }
+  .navbar{ padding:10px }
+  #navHighlight{ display:none } /* optional on small screens */
+}
